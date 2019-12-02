@@ -3,8 +3,9 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-const db = require('./models')
-const handle = require('./handlers')
+const db = require('./models');
+const handle = require('./handlers');
+const routes = require('./routes');
 
 const app = express();
 const port = process.env.PORT;
@@ -17,6 +18,7 @@ app.get('/', function (req, res) {
   res.json({name: "John", 
   age: 31, city: "New York"})
 });
+app.use('/api/auth',routes.auth);
 
 // error handler
 app.use(handle.notFound);
