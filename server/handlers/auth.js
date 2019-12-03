@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 const db = require('../models');
 
 exports.register = async (req, res, next) => {
@@ -6,8 +8,14 @@ exports.register = async (req, res, next) => {
         // sanatizing the post 
         const { id, username } = user;
 
+        const token = jwt.sign({id, username}, process.env.SECRET);
+
         // 201 user successfully registered
-        res.status(201).json({ id, username});
+        res.status(201).json({ 
+            id, 
+            username, 
+            token
+        });
     } catch (err) {
         if(err.code === 11000) {
             err.message = 'Sorry, that username is already taken';
@@ -24,9 +32,12 @@ exports.login = async (req, res, next) => {
         const valid = await user.comparePassword(req.body.password);
 
         if(valid) {
+            const token = jwt.sign({ id, username }, process.env.SECRET);
+
             res.json({
                 id,
-                username
+                username,
+                token
             });
         } else {
             throw new Error('Invalid Username/Password');
