@@ -6,11 +6,16 @@ exports.register = async (req, res, next) => {
         // sanatizing the post 
         const { id, username } = user;
 
-        res.json({ id, username});
+        // 201 user successfully registered
+        res.status(201).json({ id, username});
     } catch (err) {
+        if(err.code === 11000) {
+            err.message = 'Sorry, that username is already taken';
+        }
+
         next(err);
     }
-}
+};
 
 exports.login = async (req, res, next) => {
     try {
@@ -28,6 +33,8 @@ exports.login = async (req, res, next) => {
         }
 
     } catch (err) {
+    err.message = 'Invalid Username/Password'
+
         next(err);
     }
-}
+};
