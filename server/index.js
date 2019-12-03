@@ -19,6 +19,7 @@ app.get('/', function (req, res) {
   age: 31, city: "New York"})
 });
 app.use('/api/auth',routes.auth);
+app.use('/api/home',routes.home);
 
 // error handler
 app.use(handle.notFound);
