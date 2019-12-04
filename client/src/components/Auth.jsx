@@ -34,19 +34,21 @@ class Auth extends React.Component {
 
         return <div>
             <form onSubmit={this.handleSubmit}>
-                <label for="username">Username</label>
+                <label htmlFor="username">Username</label>
                 <input 
                     type="text" 
                     value={username} 
-                    name="username" 
+                    name="username"
+                    autoComplete="off" 
                     onChange={this.handleChange}
                 />
 
-                <label for="password">Password</label>
+                <label htmlFor="password">Password</label>
                 <input 
                     type="password" 
                     value={password}
                     name="password"
+                    autoComplete="off"
                     onChange={this.handleChange}
                 />
 
