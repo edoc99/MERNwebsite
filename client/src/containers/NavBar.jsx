@@ -10,7 +10,7 @@ const NavBar = ({ auth, logout }) => (
                 <li><Link className="navbar-brand" to="/">LOGO</Link></li>
                 <li><Link className="navbar-item" to="/register">Register</Link></li>
                 <li><Link className="navbar-item" to="/login">Login</Link></li>
-                <li><a className="navbar-item" onClick={logout}>Logout</a></li>
+                <li><button className="logout-button" onClick={logout}>Logout</button></li>
             </ul> 
             {auth.isauthenticated && (
                 <p className="navbar-user">Logged in as {auth.user.username}</p>

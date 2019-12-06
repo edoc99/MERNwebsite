@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {authUser, logout} from '../store/actions';
 
-class Auth extends React.Component {
+class Auth extends Component {
     constructor(props) {
         super(props);
         this.state = {
